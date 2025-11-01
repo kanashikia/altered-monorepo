@@ -1,0 +1,10 @@
+node_modules
+dist
+.DS_Store
+coverage
+*.log
+packages/results
+apps/api/cache/
+apps/api/missing_cards_from_cache.csv
+apps/client/public/missing_cards*.csv
+tmp-personal/

@@ -1,0 +1,15 @@
+{
+  "name": "altered-monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:client": "npm run dev --workspace altered-tcg-app",
+    "dev:api": "npm run dev --workspace altered_api",
+    "build": "npm run build --workspaces",
+    "lint": "npm run lint --workspace altered-tcg-app",
+    "start:api": "npm run start --workspace altered_api"
+  }
+}
