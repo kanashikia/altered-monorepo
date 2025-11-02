@@ -2,6 +2,14 @@
 
 This monorepo hosts the Altered projects so they can be managed together with npm workspaces.
 
+## What You Can Do
+
+- Visualize your Altered collection gaps in the web client: filter by faction or rarity, search card names/references, sort any column, and download the current view as a CSV snapshot.
+- Cross-check vendor stock lists by pasting text exports into the client; it highlights cards you are missing, detects the faction automatically, and surfaces the cheapest edition per card.
+- Keep an offline cache of the latest dataset—the client falls back to `localStorage` whenever the remote CSV/API is unavailable and refreshes itself once per day.
+- Power the client with the API service: it aggregates every Altered card and its collection stats, resumes long-running fetches with on-disk checkpoints, and exposes missing-card reports together with totals (owned, missing, estimated cost).
+- Use the API to export missing cards in JSON, CSV, or plain text, fetch available filters, clear cached pages, and retrieve authenticated user details or a Zendesk JWT for support tooling.
+
 ## Structure
 
 - `apps/client` — Vite/React front-end (`altered-tcg-app`).
