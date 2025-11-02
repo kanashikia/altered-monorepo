@@ -114,6 +114,17 @@ curl "http://localhost:3000/api/cards/missing/export?format=txt" -o missing_card
 curl "http://localhost:3000/api/cards/missing/export?format=json" -o missing_cards.json
 ```
 
+## 🚧 Limites de requêtes & reprise automatique
+
+L'API officielle Altered applique des limitations strictes (`429 Too Many Requests`). Le service contourne ce plafond en paginant les appels et en enregistrant un point de reprise (JSON) dans `apps/api/cache/` après chaque page. Concrètement :
+
+- Chaque tentative de récupération sauvegarde `completedPages` et les données déjà reçues.
+- En cas d'erreur réseau ou de quota, l'exécution s'arrête mais les fichiers restent disponibles.
+- Relancez la même commande plus tard (`npm run dev:api`, script d'export, etc.) : le service lit la cache, reprend à la page suivante et continue jusqu'à avoir tout récupéré.
+- La cache se périme au bout de 24 h; supprimez `apps/api/cache/` si vous voulez forcer un téléchargement intégral.
+
+Cette mécanique garantit que vous n'épuisez pas la limite de requêtes et que vous finissez par obtenir l'intégralité du catalogue même en cas de coupure.
+
 ## 🏗️ Architecture
 
 ```
